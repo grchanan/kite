@@ -35,6 +35,14 @@ public class SolrMorphlineTest extends AbstractSolrMorphlineTest {
   }
   
   @Test
+  public void testLoadManagedSchema() throws Exception {
+    SolrLocator locator = new SolrLocator(new MorphlineContext.Builder().build());
+    locator.setCollectionName("managedSchemaCollection");
+    locator.setSolrHomeDir("solr" + File.separator + "managedSchemaCollection");
+    assertNotNull(locator.getIndexSchema());
+  }
+
+  @Test
   public void testLoadSolrBasic() throws Exception {
     //System.setProperty("ENV_SOLR_HOME", testSolrHome + File.separator + "collection1");
     morphline = createMorphline("test-morphlines" + File.separator + "loadSolrBasic");    
